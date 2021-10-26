@@ -34,13 +34,19 @@ public class _01_StringMethods {
 
     // Given Strings s1 and s2, return the longer String
     public static String longerString(String s1, String s2) {
-        return null;
+    	if(s1.length() > s2.length()) {
+    		return s1;
+    	}
+        return s2;
     }
 
     // If String s contains the word "underscores", change all of the spaces
     // to underscores
     public static String formatSpaces(String s) {
-        return null;
+    	if(s.contains("underscores")) {
+    		s = s.replace(' ', '_');
+    	}
+        return s;
     }
 
     // Return the name of the person whose LAST name would appear first if they
@@ -48,28 +54,57 @@ public class _01_StringMethods {
     // You cannot assume there are no extra spaces around the name, but you can
     // assume there is only one space between the first and last name
     public static String lineLeader(String s1, String s2, String s3) {
-        return null;
+    	s1 = s1.trim();
+    	s2 = s2.trim();
+    	s3 = s3.trim();
+    	String result = s1;
+    	char highest = '{';
+    	if(s1.charAt(s1.indexOf(' ') + 1) < highest) {
+    		result = s1;
+    		highest = s1.charAt(s1.indexOf(' ') + 1);
+    	}
+    	if(s2.charAt(s2.indexOf(' ') + 1) < highest) {
+    		result = s2;
+    		highest = s2.charAt(s2.indexOf(' ') + 1);
+    	}
+    	if(s3.charAt(s3.indexOf(' ') + 1) < highest) {
+    		result = s3;
+    		highest = s3.charAt(s3.indexOf(' ') + 1);
+    	}
+        return result;
     }
 
     // Return the sum of all numerical digits in the String
     public static int numeralSum(String s) {
-        return 0;
+    	int result = 0;
+    	for(int i = 0; i < s.length(); i++) {
+    		if(Character.isDigit(s.charAt(i))) {
+    			result += Integer.parseInt(s.charAt(i) + "");
+    		}
+    	}
+        return result;
     }
 
     // Return the number of times String substring appears in String s
     public static int substringCount(String s, String substring) {
-        return 0;
+    	int result = 0;
+    	int currentIndex = 0;
+    	while(s.indexOf(substring, currentIndex) > -1) {
+    		result++;
+    		currentIndex = s.indexOf(substring, currentIndex) + 1;
+    	}
+        return result;
     }
 
     // Call Utilities.encrypt at the bottom of this file to encrypt String s
     public static String encrypt(String s, char key) {
-        return null;
+        return Utilities.encrypt(s.getBytes(), (key + "").getBytes()[0]);
     }
 
     // Call Utilities.decrypt at the bottom of this file to decrypt the
     // cyphertext (encrypted text)
     public static String decrypt(String s, char key) {
-        return null;
+        return Utilities.decrypt(s, (key + "").getBytes()[0]);
     }
 
     // Return the number of words in String s that end with String substring
