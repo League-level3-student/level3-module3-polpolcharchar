@@ -110,21 +110,58 @@ public class _01_StringMethods {
     // Return the number of words in String s that end with String substring
     // You can assume there are no punctuation marks between words
     public static int wordsEndsWithSubstring(String s, String substring) {
-        return 0;
+    	int result = 0;
+    	String words[] = s.split(" ");
+    	for(int i = 0; i < words.length; i++) {
+    		if(words[i].length() >= substring.length()) {
+	    		boolean check = true;
+	    		int index = 1;
+	    		for(int j = substring.length()-1; j >= 0; j--) {
+	    			if(words[i].charAt(words[i].length()-index) == substring.charAt(j)) {
+	    			}else {
+	    				check = false;
+	    			}
+	    			index ++;
+	    		}
+	    		if(check && words[i].indexOf(substring) != -1) {
+	    			result++;
+	    		}
+    		}
+    	}
+        return result;
     }
 
     // Given String s, return the number of characters between the first
     // occurrence of String substring and the final occurrence
     // You can assume that substring will appear at least twice
     public static int distance(String s, String substring) {
-        return 0;
+		int tempIndex = 1;
+		for(int j = substring.length()-1; j >= 0; j--) {
+			if(s.charAt(s.length()-tempIndex) == substring.charAt(j)) {
+			}
+			tempIndex ++;
+		}
+        return (s.length() - (tempIndex - 1)) - (s.indexOf(substring) + substring.length());
     }
 
     // Return true if String s is a palindrome
     // palindromes are words or phrases are read the same forward as backward.
     // HINT: ignore/remove all punctuation and spaces in the String
     public static boolean palindrome(String s) {
-        return true;
+    	String letters = "";
+    	for(int i = 0; i < s.length(); i++) {
+    		if(Character.isAlphabetic(s.charAt(i))) {
+    			letters += s.charAt(i);
+    		}
+    	}
+    	letters = letters.toUpperCase();
+    	boolean result = true;
+    	for(int i = 0; i < letters.length()/2 + 1; i++) {
+    		if(!(letters.charAt(i) == letters.charAt(letters.length()-i-1))) {
+    			result = false;
+    		}
+    	}
+        return result;
     }
 }
 
